@@ -10,7 +10,7 @@ resource "time_sleep" "wait_for_polaris_sync" {
 }
 
 # Create an Exocompute configuration using the specified VPC and subnets.
-resource "polaris_aws_exocompute" "rsc_managed" {
+resource "polaris_aws_exocompute" "customer_managed" {
   account_id              = var.rsc_aws_cnp_account_id
   region                  = data.aws_region.current.name
   cluster_name            = aws_eks_cluster.rsc_exocompute.name
