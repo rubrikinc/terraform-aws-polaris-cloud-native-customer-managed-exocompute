@@ -164,3 +164,23 @@ No outputs.
 
 
 <!-- END_TF_DOCS -->
+
+## Troubleshooting
+
+### Connection Refused Error during destroy operation
+When removing/destroying this module you may encounter the following error:
+
+```
+╷
+│ Error: Get "http://localhost/api/v1/namespaces/kube-system/configmaps/aws-auth": dial tcp 127.0.0.1:80: connect: connection refused
+│ 
+│   with kubernetes_config_map.aws_auth_configmap,
+│   on config_map.tf line 5, in resource "kubernetes_config_map" "aws_auth_configmap":
+│    5: resource "kubernetes_config_map" "aws_auth_configmap" {
+│ 
+╵
+```
+
+This is due to a bug in the `kubernetes_config_map` resource as described [here](https://github.com/terraform-aws-modules/terraform-aws-eks/issues/978). To workaround this issue remove the `kubernetes_config_map.aws_auth_configmap` resource from the Terraform state file using the following command:
+
+`terraform state rm kubernetes_config_map.aws_auth_configmap`
