@@ -10,7 +10,7 @@ data "aws_ssm_parameter" "worker_image" {
 }
 
 resource "aws_launch_template" "worker" {
-  name                   = "${var.name_prefix}-rubrik-exocompute-worker-${data.aws_region.current.name}"
+  name                   = "Rubrik-Exocompute-Launch-Template-Customer-Managed"
   image_id               = data.aws_ssm_parameter.worker_image.value
   instance_type          = var.worker_instance_type
   vpc_security_group_ids = [aws_security_group.worker.id]
