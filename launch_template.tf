@@ -10,7 +10,7 @@ data "aws_ssm_parameter" "worker_image" {
 }
 
 resource "aws_launch_template" "worker" {
-  name                   = "Rubrik-Exocompute-Launch-Template-Customer-Managed"
+  name                   = var.aws_launch_template_name
   image_id               = data.aws_ssm_parameter.worker_image.value
   instance_type          = var.worker_instance_type
   vpc_security_group_ids = [aws_security_group.worker.id]
@@ -32,22 +32,7 @@ resource "aws_launch_template" "worker" {
     http_put_response_hop_limit = 2
   }
 
-  # User data attached with the launch configuration to run when starting the
-  # worker nodes.
-  #
-  # We perform the following actions:
-  #   1. Update the hostname of the node. Kubernetes uses the hostname as a
-  #      label and hence requires it to be restricted to 63 chars. If the
-  #      hostname is greater than 63 chars, we update the hostname to the
-  #      default hostname.
-  #   2. Create 255 loop devices. Loop devices are used by CDM indexing code.
-  #      This ensures that each pod has access to enough loop devices. Earlier
-  #      we tried created loop devices inside the pod rather than at node
-  #      startup, but that lead to errors in finding loop devices which is
-  #      hypothesized to be due to multiple pods trying to create loop devices
-  #      concurrently.
-  #   3. Run EKS bootstrap script which starts kubelet and register the worker
-  #      with the EKS cluster.
+      Name = var.worker_instance_node_name
   user_data = base64encode(<<-EOF
               #!/bin/bash
               set -o xtrace

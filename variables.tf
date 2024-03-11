@@ -4,6 +4,11 @@ variable "autoscaling_max_size" {
   default     = 64
 }
 
+variable "aws_autoscaling_group_name" {
+  description = "The name of the autoscaling group for Exocompute."
+  type        = string
+  default     = "Rubrik-Exocompute-Launch-Template-Customer-Managed" 
+}
 variable "aws_eks_cluster_name" {
   description = "EKS cluster name."
   type        = string
@@ -40,6 +45,12 @@ variable "aws_exocompute_vpc_cidr" {
 variable "aws_iam_cross_account_role_arn" {
   description = "AWS IAM cross account role name."
   type        = string
+}
+
+variable "aws_launch_template_name" {
+  description = "The name of the launch template for the worker nodes."
+  type        = string
+  default     = "Rubrik-Exocompute-Launch-Template-Customer-Managed"
 }
 
 
@@ -105,7 +116,11 @@ variable "rsc_deployment_ips" {
 variable "rsc_exocompute_region" {
   type        = string
   description = "AWS region for the Exocompute cluster."  
-  
+
+variable "worker_instance_node_name" {
+  description = "Worker instance node name."
+  type        = string
+  default     = "Rubrik-Exocompute-Customer-Managed-Node"
 }
 
 variable "worker_instance_profile" {

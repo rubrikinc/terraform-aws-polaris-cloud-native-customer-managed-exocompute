@@ -140,6 +140,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_autoscaling_max_size"></a> [autoscaling\_max\_size](#input\_autoscaling\_max\_size) | The maximum number of concurrent workers. | `number` | `64` | no |
+| <a name="input_aws_autoscaling_group_name"></a> [aws\_autoscaling\_group\_name](#input\_aws\_autoscaling\_group\_name) | The name of the autoscaling group for Exocompute. | `string` | `"Rubrik-Exocompute-Launch-Template-Customer-Managed"` | no |
 | <a name="input_aws_eks_cluster_name"></a> [aws\_eks\_cluster\_name](#input\_aws\_eks\_cluster\_name) | EKS cluster name. | `string` | `"Rubrik-Exocompute-Customer-Managed"` | no |
 | <a name="input_aws_eks_worker_node_role_arn"></a> [aws\_eks\_worker\_node\_role\_arn](#input\_aws\_eks\_worker\_node\_role\_arn) | AWS EKS worker node role name. | `string` | n/a | yes |
 | <a name="input_aws_exocompute_public_subnet_cidr"></a> [aws\_exocompute\_public\_subnet\_cidr](#input\_aws\_exocompute\_public\_subnet\_cidr) | Public subnet CIDR for the AWS account hosting Exocompute. | `string` | n/a | yes |
@@ -147,6 +148,7 @@ No modules.
 | <a name="input_aws_exocompute_subnet_2_cidr"></a> [aws\_exocompute\_subnet\_2\_cidr](#input\_aws\_exocompute\_subnet\_2\_cidr) | Subnet 2 CIDR for the AWS account hosting Exocompute. | `string` | n/a | yes |
 | <a name="input_aws_exocompute_vpc_cidr"></a> [aws\_exocompute\_vpc\_cidr](#input\_aws\_exocompute\_vpc\_cidr) | VPC CIDR for the AWS account hosting Exocompute. | `string` | n/a | yes |
 | <a name="input_aws_iam_cross_account_role_arn"></a> [aws\_iam\_cross\_account\_role\_arn](#input\_aws\_iam\_cross\_account\_role\_arn) | AWS IAM cross account role name. | `string` | n/a | yes |
+| <a name="input_aws_launch_template_name"></a> [aws\_launch\_template\_name](#input\_aws\_launch\_template\_name) | The name of the launch template for the worker nodes. | `string` | `"Rubrik-Exocompute-Launch-Template-Customer-Managed"` | no |
 | <a name="input_cluster_master_role_arn"></a> [cluster\_master\_role\_arn](#input\_cluster\_master\_role\_arn) | Cluster master role ARN. | `string` | n/a | yes |
 | <a name="input_enable_private_endpoint_access"></a> [enable\_private\_endpoint\_access](#input\_enable\_private\_endpoint\_access) | Enable EKS private endpoint access. | `bool` | `false` | no |
 | <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | Kubernetes version. | `string` | `"1.27"` | no |
@@ -156,6 +158,7 @@ No modules.
 | <a name="input_rsc_credentials"></a> [rsc\_credentials](#input\_rsc\_credentials) | Path to the Rubrik Security Cloud service account file. | `string` | n/a | yes |
 | <a name="input_rsc_deployment_ips"></a> [rsc\_deployment\_ips](#input\_rsc\_deployment\_ips) | Rubrik Security Cloud deployment IPs. Leaving this blank will use the default IPs. | `list(string)` | `[]` | no |
 | <a name="input_rsc_exocompute_region"></a> [rsc\_exocompute\_region](#input\_rsc\_exocompute\_region) | AWS region for the Exocompute cluster. | `string` | n/a | yes |
+| <a name="input_worker_instance_node_name"></a> [worker\_instance\_node\_name](#input\_worker\_instance\_node\_name) | Worker instance node name. | `string` | `"Rubrik-Exocompute-Customer-Managed-Node"` | no |
 | <a name="input_worker_instance_profile"></a> [worker\_instance\_profile](#input\_worker\_instance\_profile) | Worker instance profile. | `string` | n/a | yes |
 | <a name="input_worker_instance_type"></a> [worker\_instance\_type](#input\_worker\_instance\_type) | Worker instance type. | `string` | `"m5.xlarge"` | no |
 
