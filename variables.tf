@@ -4,6 +4,11 @@ variable "autoscaling_max_size" {
   default     = 64
 }
 
+variable "aws_eks_cluster_name" {
+  description = "EKS cluster name."
+  type        = string
+  default     = "Rubrik-Exocompute-Customer-Managed"
+}
 variable "aws_eks_worker_node_role_arn" {
   description = "AWS EKS worker node role name."
   type        = string

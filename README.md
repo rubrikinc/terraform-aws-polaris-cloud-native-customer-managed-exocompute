@@ -140,6 +140,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_autoscaling_max_size"></a> [autoscaling\_max\_size](#input\_autoscaling\_max\_size) | The maximum number of concurrent workers. | `number` | `64` | no |
+| <a name="input_aws_eks_cluster_name"></a> [aws\_eks\_cluster\_name](#input\_aws\_eks\_cluster\_name) | EKS cluster name. | `string` | `"Rubrik-Exocompute-Customer-Managed"` | no |
 | <a name="input_aws_eks_worker_node_role_arn"></a> [aws\_eks\_worker\_node\_role\_arn](#input\_aws\_eks\_worker\_node\_role\_arn) | AWS EKS worker node role name. | `string` | n/a | yes |
 | <a name="input_aws_exocompute_public_subnet_cidr"></a> [aws\_exocompute\_public\_subnet\_cidr](#input\_aws\_exocompute\_public\_subnet\_cidr) | Public subnet CIDR for the AWS account hosting Exocompute. | `string` | n/a | yes |
 | <a name="input_aws_exocompute_subnet_1_cidr"></a> [aws\_exocompute\_subnet\_1\_cidr](#input\_aws\_exocompute\_subnet\_1\_cidr) | Subnet 1 CIDR for the AWS account hosting Exocompute. | `string` | n/a | yes |

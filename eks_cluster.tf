@@ -1,3 +1,6 @@
+data "aws_eks_cluster_auth" "rsc_exocompute" {
+  name = var.aws_eks_cluster_name
+}
 locals {
   # If public endpoint access is turned off, then private endpoint access must
   # be turned on.
@@ -9,7 +12,7 @@ locals {
 }
 
 resource "aws_eks_cluster" "rsc_exocompute" {
-  name     = "${var.name_prefix}-rubrik-exocompute-${data.aws_region.current.name}"
+  name     = var.aws_eks_cluster_name
   role_arn = var.cluster_master_role_arn
   version  = var.kubernetes_version
 

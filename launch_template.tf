@@ -82,7 +82,7 @@ resource "aws_launch_template" "worker" {
               source /etc/environment
 
               # https://github.com/awslabs/amazon-eks-ami/blob/master/files/bootstrap.sh
-              /etc/eks/bootstrap.sh ${aws_eks_cluster.rsc_exocompute.name} --b64-cluster-ca ${aws_eks_cluster.rsc_exocompute.certificate_authority[0].data} --apiserver-endpoint ${aws_eks_cluster.rsc_exocompute.endpoint}
+              /etc/eks/bootstrap.sh ${var.aws_eks_cluster_name} --b64-cluster-ca ${aws_eks_cluster.rsc_exocompute.certificate_authority[0].data} --apiserver-endpoint ${aws_eks_cluster.rsc_exocompute.endpoint}
               EOF
     )
 }
