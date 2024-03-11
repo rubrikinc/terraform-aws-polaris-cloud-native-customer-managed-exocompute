@@ -28,6 +28,7 @@ resource "aws_launch_template" "worker" {
   name                   = var.aws_launch_template_name
   image_id               = data.aws_ssm_parameter.worker_image.value
   instance_type          = var.worker_instance_type
+  vpc_security_group_ids = [var.aws_security_group_worker-node_id]
   key_name               = var.worker_instance_enable_login ? aws_key_pair.worker[0].key_name : null
 
   block_device_mappings {

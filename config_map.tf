@@ -1,7 +1,3 @@
-data "aws_eks_cluster_auth" "exocompute_cluster_auth" {
-  name = "${var.name_prefix}-eks-cluster"
-}
-
 resource "kubernetes_config_map" "aws_auth_configmap" {
   metadata {
     name      = "aws-auth"

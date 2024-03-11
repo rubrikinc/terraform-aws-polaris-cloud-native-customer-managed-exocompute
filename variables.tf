@@ -46,21 +46,19 @@ variable "aws_profile" {
   type        = string  
 }
 
+variable "aws_security_group_control-plane_id" {
+  description = "Security group ID for the EKS control plane."
+  type        = string
+}
+
+variable "aws_security_group_worker-node_id" {
+  description = "Security group ID for the EKS worker nodes."
+  type        = string
+}
 
 variable "cluster_master_role_arn" {
   description = "Cluster master role ARN."
   type        = string
-}
-
-# If private endpoint access is enabled, then K8s API access from worker nodes
-# stays within the customer's VPC. Note that this doesn't disable public access,
-# cluster remains accessible from public internet as well. For more information,
-# see https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html.
-
-variable "enable_private_endpoint_access" {
-  description = "Enable EKS private endpoint access."
-  type        = bool
-  default     = false
 }
 
 variable "kubernetes_version" {
@@ -68,25 +66,6 @@ variable "kubernetes_version" {
     type        = string
     default     = "1.27"
 }
-
-variable "name_prefix" {
-  description = "Name prefix for all resources created."
-  type        = string
-  default     = "rubrik-byok8s"
-}
-
-# If restrict public endpoint access is enabled, then the public access to the
-# K8s API server endpoint is restricted to the RSC deployment IPs and the
-# Bastion IP, otherwise the endpoint remains accessible to the public internet.
-# When enabled, we enable the private endpoint access, otherwise there will be
-# no way for workers to communicate with the API server.
-
-variable "restrict_public_endpoint_access" {
-  description = "Restrict EKS public endpoint access."
-  type        = bool
-  default     = false
-}
-
 
 variable "rsc_aws_cnp_account_id" {
   type        = string
@@ -98,17 +77,22 @@ variable "rsc_credentials" {
   description = "Path to the Rubrik Security Cloud service account file."
 }
 
-# The IP addresses provided will automatically be turned into CIDR addresses.
-
-variable "rsc_deployment_ips" {
-  description = "Rubrik Security Cloud deployment IPs. Leaving this blank will use the default IPs."
-  type        = list(string)
-  default     = []
-}
-
 variable "rsc_exocompute_region" {
   type        = string
-  description = "AWS region for the Exocompute cluster."  
+  description = "AWS region for the Exocompute cluster."    
+}
+
+variable "rsc_exocompute_subnet_1_id" {
+  type        = string
+  description = "Subnet 1 ID for the AWS account hosting Exocompute."  
+  
+}
+
+variable "rsc_exocompute_subnet_2_id" {
+  type        = string
+  description = "Subnet 2 ID for the AWS account hosting Exocompute."  
+  
+}
 
 variable "worker_instance_enable_login" {
   description = "Enable login to worker instances. Generates a key pair and stores it in a local *.pem file."
@@ -132,3 +116,4 @@ variable "worker_instance_type" {
   type        = string
   default     = "m5.2xlarge"
 }
+

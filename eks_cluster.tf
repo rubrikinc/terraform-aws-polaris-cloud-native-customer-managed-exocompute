@@ -3,6 +3,7 @@ data "polaris_deployment" "current" {}
 data "aws_eks_cluster_auth" "rsc_exocompute" {
   name = var.aws_eks_cluster_name
 }
+
 locals {
   # Convert the list of IP addresses to a list of CIDR blocks
   rsc_ip_addresses = [for ip in data.polaris_deployment.current.ip_addresses : "${ip}/32"]
@@ -20,8 +21,8 @@ resource "aws_eks_cluster" "rsc_exocompute" {
     public_access_cidrs     = var.aws_exocompute_public_access ? local.public_access_cidrs : []
     security_group_ids      = [var.aws_security_group_control-plane_id]
     subnet_ids              = [
-      aws_subnet.rsc_exocompute_subnet_1.id, 
-      aws_subnet.rsc_exocompute_subnet_2.id
+      var.rsc_exocompute_subnet_1_id, 
+      var.rsc_exocompute_subnet_2_id
     ]
   }
 }

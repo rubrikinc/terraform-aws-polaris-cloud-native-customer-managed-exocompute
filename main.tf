@@ -13,7 +13,7 @@ resource "time_sleep" "wait_for_polaris_sync" {
 resource "polaris_aws_exocompute" "customer_managed" {
   account_id              = var.rsc_aws_cnp_account_id
   region                  = data.aws_region.current.name
-
+  
   depends_on = [time_sleep.wait_for_polaris_sync]
 }
 
