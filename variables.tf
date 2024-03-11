@@ -116,5 +116,5 @@ variable "worker_instance_profile" {
 variable "worker_instance_type" {
   description = "Worker instance type."
   type        = string
-  default     = "m5.xlarge"
+  default     = "m5.2xlarge"
 }
