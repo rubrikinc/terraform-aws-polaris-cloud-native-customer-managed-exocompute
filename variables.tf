@@ -41,6 +41,11 @@ variable "aws_launch_template_name" {
   default     = "Rubrik-Exocompute-Launch-Template-Customer-Managed"
 }
 
+variable "aws_profile" {
+  description = "AWS profile name."
+  type        = string  
+}
+
 
 variable "cluster_master_role_arn" {
   description = "Cluster master role ARN."

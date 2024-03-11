@@ -146,6 +146,8 @@ No modules.
 | <a name="input_aws_exocompute_public_access_admin_cidr"></a> [aws\_exocompute\_public\_access\_admin\_cidr](#input\_aws\_exocompute\_public\_access\_admin\_cidr) | Public access admin IP CIDR for the Exocompute cluster. Needed whe running kubectl commands from outside of AWS. Can be blank | `list(string)` | `[]` | no |
 | <a name="input_aws_iam_cross_account_role_arn"></a> [aws\_iam\_cross\_account\_role\_arn](#input\_aws\_iam\_cross\_account\_role\_arn) | AWS IAM cross account role name. | `string` | n/a | yes |
 | <a name="input_aws_launch_template_name"></a> [aws\_launch\_template\_name](#input\_aws\_launch\_template\_name) | The name of the launch template for the worker nodes. | `string` | `"Rubrik-Exocompute-Launch-Template-Customer-Managed"` | no |
+| <a name="input_aws_profile"></a> [aws\_profile](#input\_aws\_profile) | AWS profile name. | `string` | n/a | yes |
+| <a name="input_aws_security_group_control-plane_id"></a> [aws\_security\_group\_control-plane\_id](#input\_aws\_security\_group\_control-plane\_id) | Security group ID for the EKS control plane. | `string` | n/a | yes |
 | <a name="input_cluster_master_role_arn"></a> [cluster\_master\_role\_arn](#input\_cluster\_master\_role\_arn) | Cluster master role ARN. | `string` | n/a | yes |
 | <a name="input_enable_private_endpoint_access"></a> [enable\_private\_endpoint\_access](#input\_enable\_private\_endpoint\_access) | Enable EKS private endpoint access. | `bool` | `false` | no |
 | <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | Kubernetes version. | `string` | `"1.27"` | no |
