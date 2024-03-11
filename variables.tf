@@ -105,6 +105,12 @@ variable "rsc_exocompute_region" {
   type        = string
   description = "AWS region for the Exocompute cluster."  
 
+variable "worker_instance_enable_login" {
+  description = "Enable login to worker instances. Generates a key pair and stores it in a local *.pem file."
+  type        = bool
+  default     = false
+}
+
 variable "worker_instance_node_name" {
   description = "Worker instance node name."
   type        = string

@@ -9,11 +9,26 @@ data "aws_ssm_parameter" "worker_image" {
   name = "/aws/service/eks/optimized-ami/${var.kubernetes_version}/amazon-linux-2/recommended/image_id"
 }
 
+data "aws_iam_account_alias" "current" {}
+
+# Create ssh key material for the worker nodes.
+resource "tls_private_key" "worker" {
+  count = var.worker_instance_enable_login ? 1 : 0
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+# Create ssh key for the worker nodes.
+resource "aws_key_pair" "worker" {
+  count = var.worker_instance_enable_login ? 1 : 0
+  key_name   = "rubrik-exocompute-worker"
+  public_key = tls_private_key.worker[0].public_key_openssh
+}
+
 resource "aws_launch_template" "worker" {
   name                   = var.aws_launch_template_name
   image_id               = data.aws_ssm_parameter.worker_image.value
   instance_type          = var.worker_instance_type
-  vpc_security_group_ids = [aws_security_group.worker.id]
+  key_name               = var.worker_instance_enable_login ? aws_key_pair.worker[0].key_name : null
 
   block_device_mappings {
     device_name = "/dev/sdb"
@@ -70,4 +85,11 @@ resource "aws_launch_template" "worker" {
               /etc/eks/bootstrap.sh ${var.aws_eks_cluster_name} --b64-cluster-ca ${aws_eks_cluster.rsc_exocompute.certificate_authority[0].data} --apiserver-endpoint ${aws_eks_cluster.rsc_exocompute.endpoint}
               EOF
     )
+}
+
+resource "local_sensitive_file" "worker_ssh_private_key" {
+  count           = var.worker_instance_enable_login ? 1 : 0
+  content         = tls_private_key.worker[0].private_key_pem
+  filename        = "./worker-nodes-${data.aws_iam_account_alias.current.account_alias}-${data.aws_region.current.name}.pem"
+  file_permission = "0400"
 }

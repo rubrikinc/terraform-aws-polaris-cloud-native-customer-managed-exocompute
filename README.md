@@ -155,6 +155,7 @@ No modules.
 | <a name="input_rsc_credentials"></a> [rsc\_credentials](#input\_rsc\_credentials) | Path to the Rubrik Security Cloud service account file. | `string` | n/a | yes |
 | <a name="input_rsc_deployment_ips"></a> [rsc\_deployment\_ips](#input\_rsc\_deployment\_ips) | Rubrik Security Cloud deployment IPs. Leaving this blank will use the default IPs. | `list(string)` | `[]` | no |
 | <a name="input_rsc_exocompute_region"></a> [rsc\_exocompute\_region](#input\_rsc\_exocompute\_region) | AWS region for the Exocompute cluster. | `string` | n/a | yes |
+| <a name="input_worker_instance_enable_login"></a> [worker\_instance\_enable\_login](#input\_worker\_instance\_enable\_login) | Enable login to worker instances. Generates a key pair and stores it in a local *.pem file. | `bool` | `false` | no |
 | <a name="input_worker_instance_node_name"></a> [worker\_instance\_node\_name](#input\_worker\_instance\_node\_name) | Worker instance node name. | `string` | `"Rubrik-Exocompute-Customer-Managed-Node"` | no |
 | <a name="input_worker_instance_profile"></a> [worker\_instance\_profile](#input\_worker\_instance\_profile) | Worker instance profile. | `string` | n/a | yes |
 | <a name="input_worker_instance_type"></a> [worker\_instance\_type](#input\_worker\_instance\_type) | Worker instance type. | `string` | `"m5.2xlarge"` | no |
