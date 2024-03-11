@@ -24,6 +24,10 @@ variable "aws_exocompute_public_access_admin_cidr" {
   type        = list(string)
   default     = []
 }
+variable "aws_exocompute_public_access" {
+  description = "Enable public access to the Exocompute cluster."
+  type        = bool
+  default     = true
 }
 
 variable "aws_iam_cross_account_role_arn" {

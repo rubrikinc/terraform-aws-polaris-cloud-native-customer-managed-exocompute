@@ -11,9 +11,10 @@ resource "aws_eks_cluster" "rsc_exocompute" {
   version  = var.kubernetes_version
 
   vpc_config {
-    endpoint_private_access = local.endpoint_private_access
-    public_access_cidrs     = local.public_access_cidrs
-    security_group_ids      = [aws_security_group.cluster.id]
+    endpoint_private_access = var.aws_exocompute_public_access ? false : true
+    endpoint_public_access  = var.aws_exocompute_public_access ? true : false
+    public_access_cidrs     = var.aws_exocompute_public_access ? local.public_access_cidrs : []
+    security_group_ids      = [var.aws_security_group_control-plane_id]
     subnet_ids              = [
       aws_subnet.rsc_exocompute_subnet_1.id, 
       aws_subnet.rsc_exocompute_subnet_2.id
