@@ -88,49 +88,30 @@ module "polaris-aws-cloud-native-customer-managed-exocompute" {
 | <a name="provider_local"></a> [local](#provider\_local) | n/a |
 | <a name="provider_polaris"></a> [polaris](#provider\_polaris) | 0.8.0-beta.16 |
 | <a name="provider_time"></a> [time](#provider\_time) | 0.10.0 |
+| <a name="provider_tls"></a> [tls](#provider\_tls) | n/a |
 
 ## Resources
 
 | Name | Type |
 |------|------|
 | [aws_autoscaling_group.cluster](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group) | resource |
-| [aws_eip.rsc_exocompute_nat_eip](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eip) | resource |
 | [aws_eks_cluster.rsc_exocompute](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eks_cluster) | resource |
-| [aws_internet_gateway.rsc_exocompute](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/internet_gateway) | resource |
+| [aws_key_pair.worker](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/key_pair) | resource |
 | [aws_launch_template.worker](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_template) | resource |
-| [aws_nat_gateway.rsc_exocompute](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/nat_gateway) | resource |
-| [aws_route.rsc_exocompute_private_nat_gateway](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route) | resource |
-| [aws_route.rsc_exocompute_public_internet_gateway](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route) | resource |
-| [aws_route_table.rsc_exocompute_private](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table) | resource |
-| [aws_route_table.rsc_exocompute_public](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table) | resource |
-| [aws_route_table_association.rsc_exocompute_private_1](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table_association) | resource |
-| [aws_route_table_association.rsc_exocompute_private_2](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table_association) | resource |
-| [aws_route_table_association.rsc_exocompute_public](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table_association) | resource |
-| [aws_security_group.cluster](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
-| [aws_security_group.worker](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
-| [aws_subnet.rsc_exocompute_public](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
-| [aws_subnet.rsc_exocompute_subnet_1](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
-| [aws_subnet.rsc_exocompute_subnet_2](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
-| [aws_vpc.rsc_exocompute](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc) | resource |
-| [aws_vpc_endpoint.autoscaling](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint) | resource |
-| [aws_vpc_endpoint.ec2](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint) | resource |
-| [aws_vpc_endpoint.ecr_api](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint) | resource |
-| [aws_vpc_endpoint.ecr_dkr](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint) | resource |
-| [aws_vpc_endpoint.eks](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint) | resource |
-| [aws_vpc_endpoint.rsc_exocompute](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint) | resource |
-| [aws_vpc_security_group_egress_rule.cluster_worker_1025_65535](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_egress_rule) | resource |
-| [aws_vpc_security_group_egress_rule.worker_all_ipv4](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_egress_rule) | resource |
-| [aws_vpc_security_group_ingress_rule.cluster_worker_443](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_ingress_rule) | resource |
-| [aws_vpc_security_group_ingress_rule.worker_cluster_1025_65535](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_ingress_rule) | resource |
-| [aws_vpc_security_group_ingress_rule.worker_cluster_443](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_ingress_rule) | resource |
-| [aws_vpc_security_group_ingress_rule.worker_worker_all](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_ingress_rule) | resource |
+| [aws_vpc_security_group_ingress_rule.default_eks_cluster_from_control_plane_sg](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_ingress_rule) | resource |
+| [aws_vpc_security_group_ingress_rule.default_eks_cluster_from_worker_node_sg](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_ingress_rule) | resource |
 | [kubernetes_config_map.aws_auth_configmap](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/config_map) | resource |
-| [polaris_aws_exocompute.rsc_managed](https://registry.terraform.io/providers/rubrikinc/polaris/0.8.0-beta.8/docs/resources/aws_exocompute) | resource |
+| [local_sensitive_file.worker_ssh_private_key](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/sensitive_file) | resource |
+| [polaris_aws_exocompute.customer_managed](https://registry.terraform.io/providers/rubrikinc/polaris/0.8.0-beta.16/docs/resources/aws_exocompute) | resource |
+| [polaris_aws_exocompute_cluster_attachment.cluster](https://registry.terraform.io/providers/rubrikinc/polaris/0.8.0-beta.16/docs/resources/aws_exocompute_cluster_attachment) | resource |
+| [time_sleep.wait_for_exocompute_registration](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) | resource |
 | [time_sleep.wait_for_polaris_sync](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) | resource |
-| [aws_eks_cluster_auth.exocompute_cluster_auth](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/eks_cluster_auth) | data source |
+| [tls_private_key.worker](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/private_key) | resource |
 | [aws_eks_cluster_auth.rsc_exocompute](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/eks_cluster_auth) | data source |
+| [aws_iam_account_alias.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_account_alias) | data source |
 | [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 | [aws_ssm_parameter.worker_image](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ssm_parameter) | data source |
+| [polaris_deployment.current](https://registry.terraform.io/providers/rubrikinc/polaris/0.8.0-beta.16/docs/data-sources/deployment) | data source |
 
 ## Modules
 
@@ -144,20 +125,20 @@ No modules.
 | <a name="input_aws_autoscaling_group_name"></a> [aws\_autoscaling\_group\_name](#input\_aws\_autoscaling\_group\_name) | The name of the autoscaling group for Exocompute. | `string` | `"Rubrik-Exocompute-Launch-Template-Customer-Managed"` | no |
 | <a name="input_aws_eks_cluster_name"></a> [aws\_eks\_cluster\_name](#input\_aws\_eks\_cluster\_name) | EKS cluster name. | `string` | `"Rubrik-Exocompute-Customer-Managed"` | no |
 | <a name="input_aws_eks_worker_node_role_arn"></a> [aws\_eks\_worker\_node\_role\_arn](#input\_aws\_eks\_worker\_node\_role\_arn) | AWS EKS worker node role name. | `string` | n/a | yes |
+| <a name="input_aws_exocompute_public_access"></a> [aws\_exocompute\_public\_access](#input\_aws\_exocompute\_public\_access) | Enable public access to the Exocompute cluster. | `bool` | `true` | no |
 | <a name="input_aws_exocompute_public_access_admin_cidr"></a> [aws\_exocompute\_public\_access\_admin\_cidr](#input\_aws\_exocompute\_public\_access\_admin\_cidr) | Public access admin IP CIDR for the Exocompute cluster. Needed whe running kubectl commands from outside of AWS. Can be blank | `list(string)` | `[]` | no |
 | <a name="input_aws_iam_cross_account_role_arn"></a> [aws\_iam\_cross\_account\_role\_arn](#input\_aws\_iam\_cross\_account\_role\_arn) | AWS IAM cross account role name. | `string` | n/a | yes |
 | <a name="input_aws_launch_template_name"></a> [aws\_launch\_template\_name](#input\_aws\_launch\_template\_name) | The name of the launch template for the worker nodes. | `string` | `"Rubrik-Exocompute-Launch-Template-Customer-Managed"` | no |
 | <a name="input_aws_profile"></a> [aws\_profile](#input\_aws\_profile) | AWS profile name. | `string` | n/a | yes |
 | <a name="input_aws_security_group_control-plane_id"></a> [aws\_security\_group\_control-plane\_id](#input\_aws\_security\_group\_control-plane\_id) | Security group ID for the EKS control plane. | `string` | n/a | yes |
+| <a name="input_aws_security_group_worker-node_id"></a> [aws\_security\_group\_worker-node\_id](#input\_aws\_security\_group\_worker-node\_id) | Security group ID for the EKS worker nodes. | `string` | n/a | yes |
 | <a name="input_cluster_master_role_arn"></a> [cluster\_master\_role\_arn](#input\_cluster\_master\_role\_arn) | Cluster master role ARN. | `string` | n/a | yes |
-| <a name="input_enable_private_endpoint_access"></a> [enable\_private\_endpoint\_access](#input\_enable\_private\_endpoint\_access) | Enable EKS private endpoint access. | `bool` | `false` | no |
 | <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | Kubernetes version. | `string` | `"1.27"` | no |
-| <a name="input_name_prefix"></a> [name\_prefix](#input\_name\_prefix) | Name prefix for all resources created. | `string` | `"rubrik-byok8s"` | no |
-| <a name="input_restrict_public_endpoint_access"></a> [restrict\_public\_endpoint\_access](#input\_restrict\_public\_endpoint\_access) | Restrict EKS public endpoint access. | `bool` | `false` | no |
 | <a name="input_rsc_aws_cnp_account_id"></a> [rsc\_aws\_cnp\_account\_id](#input\_rsc\_aws\_cnp\_account\_id) | Rubrik Security Cloud account ID for the AWS account hosting Exocompute. | `string` | n/a | yes |
 | <a name="input_rsc_credentials"></a> [rsc\_credentials](#input\_rsc\_credentials) | Path to the Rubrik Security Cloud service account file. | `string` | n/a | yes |
-| <a name="input_rsc_deployment_ips"></a> [rsc\_deployment\_ips](#input\_rsc\_deployment\_ips) | Rubrik Security Cloud deployment IPs. Leaving this blank will use the default IPs. | `list(string)` | `[]` | no |
 | <a name="input_rsc_exocompute_region"></a> [rsc\_exocompute\_region](#input\_rsc\_exocompute\_region) | AWS region for the Exocompute cluster. | `string` | n/a | yes |
+| <a name="input_rsc_exocompute_subnet_1_id"></a> [rsc\_exocompute\_subnet\_1\_id](#input\_rsc\_exocompute\_subnet\_1\_id) | Subnet 1 ID for the AWS account hosting Exocompute. | `string` | n/a | yes |
+| <a name="input_rsc_exocompute_subnet_2_id"></a> [rsc\_exocompute\_subnet\_2\_id](#input\_rsc\_exocompute\_subnet\_2\_id) | Subnet 2 ID for the AWS account hosting Exocompute. | `string` | n/a | yes |
 | <a name="input_worker_instance_enable_login"></a> [worker\_instance\_enable\_login](#input\_worker\_instance\_enable\_login) | Enable login to worker instances. Generates a key pair and stores it in a local *.pem file. | `bool` | `false` | no |
 | <a name="input_worker_instance_node_name"></a> [worker\_instance\_node\_name](#input\_worker\_instance\_node\_name) | Worker instance node name. | `string` | `"Rubrik-Exocompute-Customer-Managed-Node"` | no |
 | <a name="input_worker_instance_profile"></a> [worker\_instance\_profile](#input\_worker\_instance\_profile) | Worker instance profile. | `string` | n/a | yes |
@@ -165,7 +146,14 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_cluster_ca_certificate"></a> [cluster\_ca\_certificate](#output\_cluster\_ca\_certificate) | n/a |
+| <a name="output_cluster_connection_command"></a> [cluster\_connection\_command](#output\_cluster\_connection\_command) | n/a |
+| <a name="output_cluster_endpoint"></a> [cluster\_endpoint](#output\_cluster\_endpoint) | n/a |
+| <a name="output_cluster_name"></a> [cluster\_name](#output\_cluster\_name) | n/a |
+| <a name="output_cluster_token"></a> [cluster\_token](#output\_cluster\_token) | n/a |
+| <a name="output_worker_ssh_private_key"></a> [worker\_ssh\_private\_key](#output\_worker\_ssh\_private\_key) | Output the ssh private key for the worker nodes when local login to nodes is enabled. |
 
 
 <!-- END_TF_DOCS -->
