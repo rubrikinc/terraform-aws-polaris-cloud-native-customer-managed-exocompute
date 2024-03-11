@@ -15,5 +15,15 @@ resource "polaris_aws_exocompute" "customer_managed" {
   region                  = data.aws_region.current.name
 
   depends_on = [time_sleep.wait_for_polaris_sync]
+}
 
+resource "time_sleep" "wait_for_exocompute_registration" {
+  create_duration = "60s"
+}
+
+resource "polaris_aws_exocompute_cluster_attachment" "cluster" {
+  exocompute_id = polaris_aws_exocompute.customer_managed.id
+  cluster_name  = var.aws_eks_cluster_name
+
+  depends_on = [time_sleep.wait_for_exocompute_registration]
 }

@@ -77,7 +77,7 @@ module "polaris-aws-cloud-native-customer-managed-exocompute" {
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.5.6 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~>5.26.0 |
-| <a name="requirement_polaris"></a> [polaris](#requirement\_polaris) | =0.8.0-beta.8 |
+| <a name="requirement_polaris"></a> [polaris](#requirement\_polaris) | =0.8.0-beta.16 |
 
 ## Providers
 
@@ -85,7 +85,8 @@ module "polaris-aws-cloud-native-customer-managed-exocompute" {
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | 5.26.0 |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.25.2 |
-| <a name="provider_polaris"></a> [polaris](#provider\_polaris) | 0.8.0-beta.8 |
+| <a name="provider_local"></a> [local](#provider\_local) | n/a |
+| <a name="provider_polaris"></a> [polaris](#provider\_polaris) | 0.8.0-beta.16 |
 | <a name="provider_time"></a> [time](#provider\_time) | 0.10.0 |
 
 ## Resources
