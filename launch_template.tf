@@ -47,7 +47,16 @@ resource "aws_launch_template" "worker" {
     http_put_response_hop_limit = 2
   }
 
+  tag_specifications {
+    resource_type = "instance"
+
+    tags = {
       Name = var.worker_instance_node_name
+      "kubernetes.io/cluster/${var.aws_eks_cluster_name}" = "owned"
+    }
+    
+  }
+
   user_data = base64encode(<<-EOF
               #!/bin/bash
               set -o xtrace
