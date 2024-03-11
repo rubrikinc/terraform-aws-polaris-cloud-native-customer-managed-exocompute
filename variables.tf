@@ -19,27 +19,11 @@ variable "aws_eks_worker_node_role_arn" {
   type        = string
 }
 
-variable "aws_exocompute_public_subnet_cidr" {
-  type        = string
-  description = "Public subnet CIDR for the AWS account hosting Exocompute."  
-  
+variable "aws_exocompute_public_access_admin_cidr" {
+  description = "Public access admin IP CIDR for the Exocompute cluster. Needed whe running kubectl commands from outside of AWS. Can be blank"
+  type        = list(string)
+  default     = []
 }
-
-variable "aws_exocompute_subnet_1_cidr" {
-  type        = string
-  description = "Subnet 1 CIDR for the AWS account hosting Exocompute."  
-  
-}
-
-variable "aws_exocompute_subnet_2_cidr" {
-  type        = string
-  description = "Subnet 2 CIDR for the AWS account hosting Exocompute."  
-  
-}
-
-variable "aws_exocompute_vpc_cidr" {
-  type        = string
-  description = "VPC CIDR for the AWS account hosting Exocompute."  
 }
 
 variable "aws_iam_cross_account_role_arn" {

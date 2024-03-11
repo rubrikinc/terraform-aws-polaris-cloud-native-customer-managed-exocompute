@@ -2,13 +2,7 @@ data "aws_eks_cluster_auth" "rsc_exocompute" {
   name = var.aws_eks_cluster_name
 }
 locals {
-  # If public endpoint access is turned off, then private endpoint access must
-  # be turned on.
-  endpoint_private_access = var.restrict_public_endpoint_access ? true:  var.enable_private_endpoint_access
-
-  # If public endpoint access is turned off, we restrict public access to only
-  # RSC.
-  public_access_cidrs = var.restrict_public_endpoint_access ? formatlist("%s/32", var.rsc_deployment_ips) : ["0.0.0.0/0"]
+  public_access_cidrs = "${concat(local.rsc_ip_addresses, var.aws_exocompute_public_access_admin_cidr)}"
 }
 
 resource "aws_eks_cluster" "rsc_exocompute" {
