@@ -10,6 +10,8 @@ There are a few services you'll need in order to get this project off the ground
 - [Rubrik Polaris Provider for Terraform](https://github.com/rubrikinc/terraform-provider-polaris) - provides Terraform functions for Rubrik Security Cloud (Polaris)
 - [Install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) - Needed for Terraform to authenticate with AWS
 
+This module is designed to be run from a network where the EKS cluster can be accessed. By default, this module blocks public access to the EKS APIs. When public access is enabled the Rubrik RSC IPs are whitelisted in the EKS cluster. This will not allow Internet access from where `terraform` command is being run. Ensure that the `aws_exocompute_public_access_admin_cidr` variable is set to allow the network where the `terraform` command is being run to access the cluster. Alternatively run this Terraform inside of AWS on a subnet with routing/VPC endpoint access to the EKS API. It is the Kubernetes provider (aka the `kubectl` command) that needs network access to the EKS cluster APIs.
+
 ## Usage
 
 ```hcl
