@@ -27,6 +27,22 @@ resource "aws_eks_cluster" "rsc_exocompute" {
   }
 }
 
-data "aws_eks_cluster_auth" "rsc_exocompute" {
-  name = "${var.name_prefix}-rubrik-exocompute-${data.aws_region.current.name}"
+#EKS cluster default security group rules.
+
+resource "aws_vpc_security_group_ingress_rule" "default_eks_cluster_from_control_plane_sg" {
+  description = "Inbound traffic from cluster control plane"
+
+  security_group_id            = aws_eks_cluster.rsc_exocompute.vpc_config[0].cluster_security_group_id
+  referenced_security_group_id = var.aws_security_group_control-plane_id
+
+  ip_protocol = "-1"
+}
+
+resource "aws_vpc_security_group_ingress_rule" "default_eks_cluster_from_worker_node_sg" {
+  description = "Inbound traffic from cluster control plane"
+
+  security_group_id            = aws_eks_cluster.rsc_exocompute.vpc_config[0].cluster_security_group_id
+  referenced_security_group_id = var.aws_security_group_worker-node_id
+
+  ip_protocol = "-1"
 }
