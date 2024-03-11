@@ -1,7 +1,10 @@
+data "polaris_deployment" "current" {}
+
 data "aws_eks_cluster_auth" "rsc_exocompute" {
   name = var.aws_eks_cluster_name
 }
 locals {
+  rsc_ip_addresses = [for ip in data.polaris_deployment.current.ip_addresses : "${ip}/32"]
   public_access_cidrs = "${concat(local.rsc_ip_addresses, var.aws_exocompute_public_access_admin_cidr)}"
 }
 
